@@ -1,0 +1,1 @@
+.loader{position:relative;width:100px;height:100px}.loader:before,.loader:after{content:"";border-radius:50%;position:absolute;top:0;right:0;bottom:0;left:0;box-shadow:0 0 10px 2px #0000004d inset}.loader:after{box-shadow:0 2px #ff3d00 inset;animation:rotate 2s linear infinite}@keyframes rotate{0%{transform:rotate(0)}to{transform:rotate(360deg)}}
