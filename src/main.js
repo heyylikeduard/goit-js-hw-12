@@ -9,9 +9,10 @@ import { createImageMarkup } from "./js/render-functions.js"
 
 const form = document.getElementById("search-form");
 const galleryContainer = document.querySelector(".gallery");
+const loader = document.getElementById("loader");
 
 let lightbox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt', 
+  captionsData: 'alt',
   captionDelay: 250,
 });
 
@@ -23,6 +24,8 @@ form.addEventListener("submit", async (event) => {
     iziToast.warning({ title: "Warning", message: "Please enter a search term." });
     return;
   }
+
+  loader.style.display = "block"; // Показуємо індикатор завантаження
 
   try {
     const images = await fetchImages(query);
@@ -38,10 +41,10 @@ form.addEventListener("submit", async (event) => {
     }
 
     galleryContainer.innerHTML = createImageMarkup(images);
-
     lightbox.refresh();
-
   } catch (error) {
     iziToast.error({ title: "Error", message: "Failed to fetch images. Please try again later." });
+  } finally {
+    loader.style.display = "none"; // Приховуємо індикатор завантаження після завершення запиту
   }
 });
