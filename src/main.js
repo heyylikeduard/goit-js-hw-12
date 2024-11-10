@@ -37,7 +37,7 @@ async function loadImages() {
       return;
     }
 
-    galleryContainer.innerHTML += createImageMarkup(data.hits);
+    galleryContainer.insertAdjacentHTML('beforeend', createImageMarkup(data.hits));
     lightbox.refresh();
 
     if (galleryContainer.children.length >= totalHits) {
@@ -80,11 +80,11 @@ form.addEventListener("submit", (event) => {
   }
 
   galleryContainer.innerHTML = ''; 
-  page = 1; 
-  totalHits = 0; 
-  loadMoreButton.style.display = "none"; 
+  page = 1;
+  totalHits = 0;
+  loadMoreButton.style.display = "none";
 
-  loadImages(); 
+  loadImages();  
 });
 
 loadMoreButton.addEventListener("click", loadImages);
